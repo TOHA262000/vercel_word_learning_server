@@ -2,9 +2,24 @@ import clientPromise from "../../lib/mongo";
 export default async function handler(req, res) {
 
   // CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  // Inside your serverless function handler
+  const allowedOrigins = [
+    "http://localhost:5173",                       // local dev
+    "https://word-learning-lyart.vercel.app",     // Vercel frontend
+    "https://chipper-moonbeam-9ae359.netlify.app" // Netlify frontend
+  ];
+
+  const origin = req.headers.origin;
+
+  // Dynamically set Access-Control-Allow-Origin
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+
+  // Standard CORS headers
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
 
   // Handle preflight OPTIONS request
   if (req.method === "OPTIONS") {

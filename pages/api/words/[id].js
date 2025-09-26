@@ -30,11 +30,6 @@ export default async function handler(req, res) {
     return;
   }
 
-
-  // Handle preflight OPTIONS request
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
   try {
     const client = await clientPromise;
     const wordsCollection = client.db("word_learning").collection("words");
