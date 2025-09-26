@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const allowedOrigins = [
     "http://localhost:5173",                       // local dev
     "https://word-learning-lyart.vercel.app",     // Vercel frontend
-    "https://chipper-moonbeam-9ae359.netlify.app" // Netlify frontend
+    "https://shimmering-manatee-e3a37f.netlify.app/" // Netlify frontend
   ];
 
   const origin = req.headers.origin;
